@@ -25,8 +25,8 @@ object SamsungTVCodes {
     const val FREQUENCY = 38000
 
     val POWER_VARIATIONS = listOf(
-        intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
         intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
+        intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
         intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 42000),
         intArrayOf(4600, 4500, 550, 1700, 550, 1700, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 1700, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 600, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 45000),
         intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 42000),
@@ -46,31 +46,21 @@ object SamsungTVCodes {
     val CHANNEL_DOWN = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
     val MUTE = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
     val SOURCE = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val MENU = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NAV_UP = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NAV_DOWN = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NAV_LEFT = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NAV_RIGHT = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val ENTER = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val RETURN = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val EXIT = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_0 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_1 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_2 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_3 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_4 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_5 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_6 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_7 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_8 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
-    val NUM_9 = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 42000)
 }
 
 data class IRButton(
     val name: String,
     val code: IntArray,
     val emoji: String = ""
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as IRButton
+        return name == other.name && code.contentEquals(other.code)
+    }
+    override fun hashCode(): Int = 31 * name.hashCode() + code.contentHashCode()
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -82,7 +72,6 @@ fun IRTesterScreen(
     val context = LocalContext.current
     var statusMessage by remember { mutableStateOf("Ready") }
     var hasIrBlaster by remember { mutableStateOf(false) }
-    var testIndex by remember { mutableIntStateOf(0) }
     var powerVariationIndex by remember { mutableIntStateOf(0) }
     var isAutoPlaying by remember { mutableStateOf(false) }
     var autoPlayDelay by remember { mutableIntStateOf(2500) }
@@ -93,15 +82,42 @@ fun IRTesterScreen(
     var pendingButtonEmoji by remember { mutableStateOf("") }
     var pendingButtonCode by remember { mutableStateOf<IntArray?>(null) }
 
+    // Button type selection
+    var selectedButtonType by remember { mutableStateOf("Power") }
+    val buttonTypes = listOf("Power", "Vol+", "Vol-", "Ch+", "Ch-", "Mute", "Source")
+
     LaunchedEffect(irManager) {
         hasIrBlaster = irManager?.hasIrEmitter() == true
         statusMessage = if (hasIrBlaster) "IR Blaster Available ✓" else "No IR Blaster Found ✗"
     }
 
+    // Reset variation index when button type changes
+    LaunchedEffect(selectedButtonType) {
+        powerVariationIndex = 0
+        isAutoPlaying = false
+    }
+
+    // Get current code based on selection
+    val currentCode: IntArray = remember(selectedButtonType, powerVariationIndex) {
+        when (selectedButtonType) {
+            "Power" -> SamsungTVCodes.POWER_VARIATIONS.getOrElse(powerVariationIndex) { SamsungTVCodes.POWER }
+            "Vol+" -> SamsungTVCodes.VOLUME_UP
+            "Vol-" -> SamsungTVCodes.VOLUME_DOWN
+            "Ch+" -> SamsungTVCodes.CHANNEL_UP
+            "Ch-" -> SamsungTVCodes.CHANNEL_DOWN
+            "Mute" -> SamsungTVCodes.MUTE
+            "Source" -> SamsungTVCodes.SOURCE
+            else -> SamsungTVCodes.POWER
+        }
+    }
+
+    val variationCount = if (selectedButtonType == "Power") SamsungTVCodes.POWER_VARIATIONS.size else 1
+
     LaunchedEffect(isAutoPlaying, powerVariationIndex) {
-        if (isAutoPlaying && hasIrBlaster) {
+        if (isAutoPlaying && hasIrBlaster && selectedButtonType == "Power") {
             try {
-                irManager?.transmit(SamsungTVCodes.FREQUENCY, SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex])
+                val code = SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex]
+                irManager?.transmit(SamsungTVCodes.FREQUENCY, code)
                 statusMessage = "🔄 Auto: Power V${powerVariationIndex + 1} - Press STOP if TV responds!"
             } catch (e: Exception) {
                 statusMessage = "Error: ${e.message}"
@@ -112,34 +128,6 @@ fun IRTesterScreen(
             }
         }
     }
-
-    val testButtons = listOf(
-        IRButton("Power", SamsungTVCodes.POWER, "🔴"),
-        IRButton("Vol +", SamsungTVCodes.VOLUME_UP, "🔊"),
-        IRButton("Vol -", SamsungTVCodes.VOLUME_DOWN, "🔉"),
-        IRButton("Ch +", SamsungTVCodes.CHANNEL_UP, "⬆️"),
-        IRButton("Ch -", SamsungTVCodes.CHANNEL_DOWN, "⬇️"),
-        IRButton("Mute", SamsungTVCodes.MUTE, "🔇"),
-        IRButton("Source", SamsungTVCodes.SOURCE, "📺"),
-        IRButton("Menu", SamsungTVCodes.MENU, "📋"),
-        IRButton("Up", SamsungTVCodes.NAV_UP, "🔼"),
-        IRButton("Down", SamsungTVCodes.NAV_DOWN, "🔽"),
-        IRButton("Left", SamsungTVCodes.NAV_LEFT, "◀️"),
-        IRButton("Right", SamsungTVCodes.NAV_RIGHT, "▶️"),
-        IRButton("OK", SamsungTVCodes.ENTER, "✅"),
-        IRButton("Return", SamsungTVCodes.RETURN, "↩️"),
-        IRButton("Exit", SamsungTVCodes.EXIT, "❌"),
-        IRButton("0", SamsungTVCodes.NUM_0, "0️⃣"),
-        IRButton("1", SamsungTVCodes.NUM_1, "1️⃣"),
-        IRButton("2", SamsungTVCodes.NUM_2, "2️⃣"),
-        IRButton("3", SamsungTVCodes.NUM_3, "3️⃣"),
-        IRButton("4", SamsungTVCodes.NUM_4, "4️⃣"),
-        IRButton("5", SamsungTVCodes.NUM_5, "5️⃣"),
-        IRButton("6", SamsungTVCodes.NUM_6, "6️⃣"),
-        IRButton("7", SamsungTVCodes.NUM_7, "7️⃣"),
-        IRButton("8", SamsungTVCodes.NUM_8, "8️⃣"),
-        IRButton("9", SamsungTVCodes.NUM_9, "9️⃣"),
-    )
 
     fun sendIRSignal(code: IntArray, buttonName: String) {
         if (irManager?.hasIrEmitter() == true) {
@@ -165,7 +153,7 @@ fun IRTesterScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("🔬 IR Tester") },
+                title = { Text("🔬 Samsung IR Tester") },
                 navigationIcon = {
                     IconButton(onClick = onMenuClick) {
                         Icon(Icons.Default.Menu, contentDescription = "Menu")
@@ -197,24 +185,83 @@ fun IRTesterScreen(
                 )
             }
 
-            // Progressive Test Section
+            // Button Type Selector
+            Card(
+                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "Samsung TV - Select Button",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 12.dp)
+                    )
+
+                    // Button type chips - row 1
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        buttonTypes.take(4).forEach { buttonType ->
+                            FilterChip(
+                                selected = selectedButtonType == buttonType,
+                                onClick = { selectedButtonType = buttonType },
+                                label = { Text(buttonType, fontSize = 12.sp) },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // Button type chips - row 2
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        buttonTypes.drop(4).forEach { buttonType ->
+                            FilterChip(
+                                selected = selectedButtonType == buttonType,
+                                onClick = { selectedButtonType = buttonType },
+                                label = { Text(buttonType, fontSize = 12.sp) },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                        // Fill remaining space
+                        repeat(4 - buttonTypes.drop(4).size) {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
+
+                    // Show variation count for Power
+                    if (selectedButtonType == "Power") {
+                        Text(
+                            text = "${SamsungTVCodes.POWER_VARIATIONS.size} power code variations available",
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.7f),
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
+                }
+            }
+
+            // Test Section
             Card(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
             ) {
                 Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Progressive Test Mode", fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
-                    Text("Current: ${testButtons[testIndex].name} (${testIndex + 1}/${testButtons.size})", modifier = Modifier.padding(bottom = 8.dp))
+                    Text("Test $selectedButtonType", fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
 
-                    if (testButtons[testIndex].name == "Power") {
+                    if (variationCount > 1) {
                         Text(
-                            "Power Variation: ${powerVariationIndex + 1}/${SamsungTVCodes.POWER_VARIATIONS.size}",
+                            "Variation: ${powerVariationIndex + 1}/$variationCount",
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
 
-                        // Auto-Play Section
+                        // Auto-Play Section for Power
                         Card(
                             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
                             colors = CardDefaults.cardColors(
@@ -228,7 +275,7 @@ fun IRTesterScreen(
                                 )
                                 Text(
                                     text = if (isAutoPlaying) "Testing V${powerVariationIndex + 1} - Press STOP when TV responds!"
-                                    else "Will cycle through all ${SamsungTVCodes.POWER_VARIATIONS.size} variations",
+                                    else "Will cycle through all $variationCount variations",
                                     fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp)
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
@@ -262,32 +309,13 @@ fun IRTesterScreen(
                                 }
                             }
                         }
-                    }
 
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(
-                            onClick = {
-                                if (testButtons[testIndex].name == "Power") {
-                                    sendIRSignal(SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex], "Power V${powerVariationIndex + 1}")
-                                } else {
-                                    sendIRSignal(testButtons[testIndex].code, testButtons[testIndex].name)
-                                }
-                            },
-                            enabled = !isAutoPlaying
-                        ) { Text("Send Test Signal") }
-                        Button(
-                            onClick = { testIndex = (testIndex + 1) % testButtons.size },
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-                            enabled = !isAutoPlaying
-                        ) { Text("Next Button ⏭") }
-                    }
-
-                    if (testButtons[testIndex].name == "Power") {
-                        Text("Try Different Power Codes:", fontSize = 12.sp, fontWeight = FontWeight.Medium, modifier = Modifier.padding(top = 12.dp, bottom = 4.dp))
+                        // Variation navigation
+                        Text("Try Different Variations:", fontSize = 12.sp, fontWeight = FontWeight.Medium, modifier = Modifier.padding(top = 12.dp, bottom = 4.dp))
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(
                                 onClick = {
-                                    powerVariationIndex = if (powerVariationIndex > 0) powerVariationIndex - 1 else SamsungTVCodes.POWER_VARIATIONS.size - 1
+                                    powerVariationIndex = if (powerVariationIndex > 0) powerVariationIndex - 1 else variationCount - 1
                                     sendIRSignal(SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex], "Power V${powerVariationIndex + 1}")
                                 },
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary),
@@ -295,7 +323,7 @@ fun IRTesterScreen(
                             ) { Text("← Prev") }
                             Button(
                                 onClick = {
-                                    powerVariationIndex = (powerVariationIndex + 1) % SamsungTVCodes.POWER_VARIATIONS.size
+                                    powerVariationIndex = (powerVariationIndex + 1) % variationCount
                                     sendIRSignal(SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex], "Power V${powerVariationIndex + 1}")
                                 },
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary),
@@ -304,36 +332,61 @@ fun IRTesterScreen(
                         }
                     }
 
+                    // Manual send button
+                    val currentButtonName = if (selectedButtonType == "Power" && variationCount > 1) {
+                        "Power V${powerVariationIndex + 1}"
+                    } else {
+                        selectedButtonType
+                    }
+
                     Button(
-                        onClick = { testIndex = 0; powerVariationIndex = 0; isAutoPlaying = false },
-                        modifier = Modifier.padding(top = 8.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
-                    ) { Text("Reset to Start") }
+                        onClick = { sendIRSignal(currentCode, currentButtonName) },
+                        modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+                        enabled = !isAutoPlaying
+                    ) {
+                        Text("Send $currentButtonName")
+                    }
 
                     // Add to Remote Button
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = {
-                            val currentButton = testButtons[testIndex]
-                            val buttonCode = if (currentButton.name == "Power") {
-                                SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex]
-                            } else {
-                                currentButton.code
+                            val emoji = when (selectedButtonType) {
+                                "Power" -> "🔴"
+                                "Vol+" -> "🔊"
+                                "Vol-" -> "🔉"
+                                "Ch+" -> "⬆️"
+                                "Ch-" -> "⬇️"
+                                "Mute" -> "🔇"
+                                "Source" -> "📺"
+                                else -> "📡"
                             }
-                            val buttonName = if (currentButton.name == "Power") {
-                                "Power V${powerVariationIndex + 1}"
-                            } else {
-                                currentButton.name
-                            }
-                            pendingButtonName = buttonName
-                            pendingButtonEmoji = currentButton.emoji
-                            pendingButtonCode = buttonCode
+                            pendingButtonName = currentButtonName
+                            pendingButtonEmoji = emoji
+                            pendingButtonCode = currentCode
                             showAddDialog = true
                         },
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                         enabled = !isAutoPlaying
-                    ) { Text("✓ Add to My Remote", fontWeight = FontWeight.Bold) }
+                    ) {
+                        Text("✓ Add to My Remote", fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+
+            // Info card
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("💡 Tip", fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "Use '🌐 Browse All Brands' from the menu for other TV brands and devices.",
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
                 }
             }
 
@@ -366,12 +419,16 @@ fun IRTesterScreen(
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         emojiOptions.take(8).forEach { e ->
                             Card(
-                                modifier = Modifier.size(36.dp).clickable { customEmoji = e },
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clickable { customEmoji = e },
                                 colors = CardDefaults.cardColors(
                                     containerColor = if (e == customEmoji) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
                                 )
                             ) {
-                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(e, fontSize = 18.sp) }
+                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                    Text(e, fontSize = 18.sp)
+                                }
                             }
                         }
                     }
@@ -379,12 +436,16 @@ fun IRTesterScreen(
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         emojiOptions.drop(8).forEach { e ->
                             Card(
-                                modifier = Modifier.size(36.dp).clickable { customEmoji = e },
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clickable { customEmoji = e },
                                 colors = CardDefaults.cardColors(
                                     containerColor = if (e == customEmoji) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
                                 )
                             ) {
-                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(e, fontSize = 18.sp) }
+                                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                    Text(e, fontSize = 18.sp)
+                                }
                             }
                         }
                     }
@@ -406,5 +467,4 @@ fun IRTesterScreen(
         )
     }
 }
-
 

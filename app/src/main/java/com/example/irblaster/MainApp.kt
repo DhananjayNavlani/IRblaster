@@ -62,13 +62,24 @@ fun MainApp(
 
                 // IR Tester option
                 NavigationDrawerItem(
-                    label = { Text("🔬 IR Tester") },
+                    label = { Text("🔬 IR Tester (Samsung)") },
                     selected = false,
                     onClick = {
                         scope.launch { drawerState.close() }
                         navController.navigate(Screen.Home.route) {
                             popUpTo(Screen.Home.route) { inclusive = true }
                         }
+                    },
+                    modifier = Modifier.padding(horizontal = 12.dp)
+                )
+
+                // Brand Browser option
+                NavigationDrawerItem(
+                    label = { Text("🌐 Browse All Brands (Online)") },
+                    selected = false,
+                    onClick = {
+                        scope.launch { drawerState.close() }
+                        navController.navigate(Screen.BrandBrowser.route)
                     },
                     modifier = Modifier.padding(horizontal = 12.dp)
                 )
@@ -132,6 +143,18 @@ fun MainApp(
                 IRTesterScreen(
                     irManager = irManager,
                     onMenuClick = { scope.launch { drawerState.open() } },
+                    onAddToRemote = { name, emoji, code, frequency ->
+                        pendingButton = PendingButton(name, emoji, code, frequency)
+                        showSelectRemoteDialog = true
+                    }
+                )
+            }
+
+            // Brand Browser Screen
+            composable(Screen.BrandBrowser.route) {
+                BrandBrowserScreen(
+                    irManager = irManager,
+                    onBackClick = { navController.popBackStack() },
                     onAddToRemote = { name, emoji, code, frequency ->
                         pendingButton = PendingButton(name, emoji, code, frequency)
                         showSelectRemoteDialog = true
