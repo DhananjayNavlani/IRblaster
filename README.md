@@ -106,8 +106,21 @@ app/src/main/java/com/example/irblaster/
 
 ## API Sources
 
-- **IRDB**: https://github.com/probonopd/irdb (Open source IR database)
-- Uses raw GitHub API to fetch brand listings and IR code files
+The app supports multiple IR code databases with automatic fallback:
+
+- **IRDB**: 
+  - Primary: https://github.com/simon-weber/irdb (actively maintained)
+  - Fallback: https://github.com/probonopd/irdb
+  
+- **Flipper IRDB**:
+  - Primary: https://github.com/Lucaslhm/Flipper-IRDB (Flipper Zero community)
+  - Fallback: https://github.com/UberGuidoZ/Flipper-IRDB
+
+- **LIRC**:
+  - Primary: https://github.com/probonopd/lirc-remotes
+  - Fallback: https://github.com/lirc-remotes/lirc-remotes
+
+Uses GitHub API to fetch brand listings and IR code files with automatic fallback to alternative mirrors if primary fails.
 
 ## License
 

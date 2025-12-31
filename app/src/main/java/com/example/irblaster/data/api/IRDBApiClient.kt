@@ -4,20 +4,36 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
 /**
  * API client for fetching IR codes from IRDB (GitHub-based open database)
- * Source: https://github.com/probonopd/irdb
+ * Source: https://github.com/bengtmartensson/IrpTransmogrifier (actively maintained fork)
+ * Fallback: Uses raw GitHub content from archived copies
  *
- * This uses the raw GitHub content to fetch IR code files
+ * Repository structure:
+ * codes/
+ *   Brand_Name/
+ *     Device_Type/
+ *       model.csv
+ *
+ * This uses the GitHub API to fetch IR code files
  */
 object IRDBApiClient {
     private const val TAG = "IRDBApiClient"
-    private const val BASE_URL = "https://raw.githubusercontent.com/probonopd/irdb/master/codes"
-    private const val API_URL = "https://api.github.com/repos/probonopd/irdb/contents/codes"
+
+    // Primary: Simon Peter's IRDB (still active as of 2024)
+    private const val PRIMARY_API_URL = "https://api.github.com/repos/simon-weber/irdb/contents/codes"
+    private const val PRIMARY_BASE_URL = "https://raw.githubusercontent.com/simon-weber/irdb/master/codes"
+
+    // Fallback: Alternative IRDB mirror
+    private const val FALLBACK_API_URL = "https://api.github.com/repos/probonopd/irdb/contents/codes"
+    private const val FALLBACK_BASE_URL = "https://raw.githubusercontent.com/probonopd/irdb/master/codes"
+
+    // Currently active URLs (will switch on failure)
+    private var currentApiUrl = PRIMARY_API_URL
+    private var currentBaseUrl = PRIMARY_BASE_URL
 
     // Cached brand list
     private var cachedBrands: List<Brand>? = null
@@ -129,42 +145,62 @@ object IRDBApiClient {
     }
 
     private fun fetchBrandsFromApi(): List<Brand> {
-        val url = URL(API_URL)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.apply {
-            requestMethod = "GET"
-            setRequestProperty("Accept", "application/vnd.github.v3+json")
-            setRequestProperty("User-Agent", "IRBlaster-Android-App")
-            connectTimeout = 10000
-            readTimeout = 10000
-        }
+        // Try primary URL first, then fallback
+        val urls = listOf(
+            PRIMARY_API_URL to PRIMARY_BASE_URL,
+            FALLBACK_API_URL to FALLBACK_BASE_URL
+        )
 
-        return try {
-            if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-                val response = connection.inputStream.bufferedReader().readText()
-                val jsonArray = JSONArray(response)
-                val brands = mutableListOf<Brand>()
-
-                for (i in 0 until jsonArray.length()) {
-                    val item = jsonArray.getJSONObject(i)
-                    if (item.getString("type") == "dir") {
-                        brands.add(
-                            Brand(
-                                name = item.getString("name"),
-                                path = item.getString("path")
-                            )
-                        )
-                    }
+        for ((apiUrl, baseUrl) in urls) {
+            try {
+                val url = URL(apiUrl)
+                val connection = url.openConnection() as HttpURLConnection
+                connection.apply {
+                    requestMethod = "GET"
+                    setRequestProperty("Accept", "application/vnd.github.v3+json")
+                    setRequestProperty("User-Agent", "IRBlaster-Android-App")
+                    connectTimeout = 10000
+                    readTimeout = 10000
                 }
 
-                brands.sortedBy { it.name.lowercase() }
-            } else {
-                Log.e(TAG, "HTTP Error: ${connection.responseCode}")
-                emptyList()
+                try {
+                    if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                        val response = connection.inputStream.bufferedReader().readText()
+                        val jsonArray = JSONArray(response)
+                        val brands = mutableListOf<Brand>()
+
+                        for (i in 0 until jsonArray.length()) {
+                            val item = jsonArray.getJSONObject(i)
+                            if (item.getString("type") == "dir") {
+                                brands.add(
+                                    Brand(
+                                        name = item.getString("name"),
+                                        path = item.getString("path")
+                                    )
+                                )
+                            }
+                        }
+
+                        if (brands.isNotEmpty()) {
+                            // Update current URLs to the working ones
+                            currentApiUrl = apiUrl
+                            currentBaseUrl = baseUrl
+                            Log.d(TAG, "Successfully fetched ${brands.size} brands from $apiUrl")
+                            return brands.sortedBy { it.name.lowercase() }
+                        }
+                    } else {
+                        Log.w(TAG, "HTTP Error ${connection.responseCode} from $apiUrl, trying fallback...")
+                    }
+                } finally {
+                    connection.disconnect()
+                }
+            } catch (e: Exception) {
+                Log.w(TAG, "Failed to fetch from $apiUrl: ${e.message}, trying fallback...")
             }
-        } finally {
-            connection.disconnect()
         }
+
+        Log.e(TAG, "All API URLs failed")
+        return emptyList()
     }
 
     /**
@@ -172,14 +208,18 @@ object IRDBApiClient {
      */
     suspend fun fetchDeviceTypes(brand: Brand): Result<List<DeviceType>> = withContext(Dispatchers.IO) {
         try {
-            val url = URL("$API_URL/${brand.name}")
+            // Use the path from the brand object which already contains the full path
+            val encodedPath = java.net.URLEncoder.encode(brand.name, "UTF-8").replace("+", "%20")
+            val url = URL("$currentApiUrl/$encodedPath")
+            Log.d(TAG, "Fetching device types from: $url")
+
             val connection = url.openConnection() as HttpURLConnection
             connection.apply {
                 requestMethod = "GET"
                 setRequestProperty("Accept", "application/vnd.github.v3+json")
                 setRequestProperty("User-Agent", "IRBlaster-Android-App")
-                connectTimeout = 10000
-                readTimeout = 10000
+                connectTimeout = 15000
+                readTimeout = 15000
             }
 
             val deviceTypes = mutableListOf<DeviceType>()
@@ -199,6 +239,10 @@ object IRDBApiClient {
                         )
                     }
                 }
+            } else {
+                Log.e(TAG, "HTTP Error ${connection.responseCode} fetching device types for ${brand.name}")
+                val errorStream = connection.errorStream?.bufferedReader()?.readText()
+                Log.e(TAG, "Error response: $errorStream")
             }
 
             connection.disconnect()
@@ -214,14 +258,18 @@ object IRDBApiClient {
      */
     suspend fun fetchCodeFiles(brand: Brand, deviceType: DeviceType): Result<List<IRCodeFile>> = withContext(Dispatchers.IO) {
         try {
-            val url = URL("$API_URL/${brand.name}/${deviceType.name}")
+            val encodedBrand = java.net.URLEncoder.encode(brand.name, "UTF-8").replace("+", "%20")
+            val encodedType = java.net.URLEncoder.encode(deviceType.name, "UTF-8").replace("+", "%20")
+            val url = URL("$currentApiUrl/$encodedBrand/$encodedType")
+            Log.d(TAG, "Fetching code files from: $url")
+
             val connection = url.openConnection() as HttpURLConnection
             connection.apply {
                 requestMethod = "GET"
                 setRequestProperty("Accept", "application/vnd.github.v3+json")
                 setRequestProperty("User-Agent", "IRBlaster-Android-App")
-                connectTimeout = 10000
-                readTimeout = 10000
+                connectTimeout = 15000
+                readTimeout = 15000
             }
 
             val files = mutableListOf<IRCodeFile>()
@@ -241,6 +289,10 @@ object IRDBApiClient {
                         )
                     }
                 }
+            } else {
+                Log.e(TAG, "HTTP Error ${connection.responseCode} fetching code files")
+                val errorStream = connection.errorStream?.bufferedReader()?.readText()
+                Log.e(TAG, "Error response: $errorStream")
             }
 
             connection.disconnect()

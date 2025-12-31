@@ -83,3 +83,5 @@ lint/tmp/
 # Secrets
 secrets.properties
 
+misc.xml
+

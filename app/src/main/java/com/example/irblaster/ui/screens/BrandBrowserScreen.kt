@@ -22,12 +22,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.irblaster.data.api.IRDBApiClient
+import com.example.irblaster.data.api.IRCodeApiManager
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
- * Screen to browse brands from IRDB API with pagination and debounced search
+ * Screen to browse brands from multiple IR code APIs with pagination and debounced search
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,6 +38,11 @@ fun BrandBrowserScreen(
     onAddToRemote: (name: String, emoji: String, code: IntArray, frequency: Int) -> Unit
 ) {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+
+    // Data source state
+    var selectedSource by remember { mutableStateOf(IRCodeApiManager.DataSource.IRDB) }
+    var showSourceSelector by remember { mutableStateOf(false) }
 
     // State
     var isLoading by remember { mutableStateOf(false) }
@@ -47,7 +53,7 @@ fun BrandBrowserScreen(
     var currentPage by remember { mutableIntStateOf(0) }
     var hasMorePages by remember { mutableStateOf(true) }
     var totalBrands by remember { mutableIntStateOf(0) }
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf("")}
 
     // Debounce job reference
     var searchJob by remember { mutableStateOf<Job?>(null) }
@@ -65,22 +71,22 @@ fun BrandBrowserScreen(
     val pageSize = 30
     val listState = rememberLazyListState()
 
-    // Load brands on first launch
+    // Load brands on first launch - uses selected data source
     LaunchedEffect(Unit) {
-        loadBrands(
-            page = 0,
-            onLoading = { isLoading = it },
-            onResult = { result, total ->
-                brands = result
-                totalBrands = total
+        isLoading = true
+        IRCodeApiManager.fetchBrands(selectedSource, 0, pageSize).fold(
+            onSuccess = { result ->
+                brands = result.map { IRDBApiClient.Brand(it.name, it.path) }
+                totalBrands = IRCodeApiManager.getTotalBrandCount(selectedSource)
                 hasMorePages = result.size >= pageSize
             },
-            onError = { error = it }
+            onFailure = { error = it.message }
         )
+        isLoading = false
     }
 
-    // Debounced search effect
-    LaunchedEffect(searchQuery) {
+    // Debounced search effect - uses selected data source
+    LaunchedEffect(searchQuery, selectedSource) {
         // Cancel previous search job
         searchJob?.cancel()
 
@@ -93,9 +99,12 @@ fun BrandBrowserScreen(
             searchJob = scope.launch {
                 delay(500)
                 isSearching = true
-                IRDBApiClient.searchBrands(searchQuery).fold(
+                IRCodeApiManager.searchBrands(searchQuery, selectedSource).fold(
                     onSuccess = { results ->
-                        searchResults = results
+                        // Convert to IRDBApiClient.Brand for compatibility
+                        searchResults = results.map {
+                            IRDBApiClient.Brand(it.name, it.path)
+                        }
                         isSearching = false
                     },
                     onFailure = { e ->
@@ -148,18 +157,30 @@ fun BrandBrowserScreen(
                     if (selectedBrand == null) {
                         IconButton(onClick = {
                             scope.launch {
-                                IRDBApiClient.clearCache()
+                                // Clear cache for selected source
+                                when (selectedSource) {
+                                    IRCodeApiManager.DataSource.IRDB -> IRDBApiClient.clearCache()
+                                    IRCodeApiManager.DataSource.FLIPPER -> com.example.irblaster.data.api.FlipperIRDBClient.clearCache()
+                                    IRCodeApiManager.DataSource.LIRC -> com.example.irblaster.data.api.LIRCApiClient.clearCache()
+                                }
                                 currentPage = 0
-                                loadBrands(
-                                    page = 0,
-                                    onLoading = { isLoading = it },
-                                    onResult = { result, total ->
-                                        brands = result
-                                        totalBrands = total
+                                brands = emptyList()
+                                searchResults = null
+                                error = null
+
+                                // Reload brands from selected source
+                                isLoading = true
+                                IRCodeApiManager.fetchBrands(selectedSource, 0, pageSize).fold(
+                                    onSuccess = { result ->
+                                        brands = result.map {
+                                            IRDBApiClient.Brand(it.name, it.path)
+                                        }
+                                        totalBrands = IRCodeApiManager.getTotalBrandCount(selectedSource)
                                         hasMorePages = result.size >= pageSize
                                     },
-                                    onError = { error = it }
+                                    onFailure = { error = it.message }
                                 )
+                                isLoading = false
                             }
                         }) {
                             Icon(Icons.Default.Refresh, contentDescription = "Refresh")
@@ -230,6 +251,75 @@ fun BrandBrowserScreen(
 
                 // Show Brands List
                 else -> {
+                    // Data Source Selector
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 8.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer
+                        )
+                    ) {
+                        Column(modifier = Modifier.padding(12.dp)) {
+                            Text(
+                                text = "Data Source",
+                                fontSize = 12.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                IRCodeApiManager.getAvailableSources().forEach { source ->
+                                    FilterChip(
+                                        selected = selectedSource == source,
+                                        onClick = {
+                                            if (selectedSource != source) {
+                                                selectedSource = source
+                                                // Reset state when switching source
+                                                brands = emptyList()
+                                                searchResults = null
+                                                searchQuery = ""
+                                                currentPage = 0
+                                                hasMorePages = true
+                                                error = null
+                                                // Reload brands for new source
+                                                scope.launch {
+                                                    isLoading = true
+                                                    IRCodeApiManager.fetchBrands(source, 0, 30).fold(
+                                                        onSuccess = { result ->
+                                                            brands = result.map {
+                                                                IRDBApiClient.Brand(it.name, it.path)
+                                                            }
+                                                            totalBrands = IRCodeApiManager.getTotalBrandCount(source)
+                                                            hasMorePages = result.size >= 30
+                                                        },
+                                                        onFailure = { error = it.message }
+                                                    )
+                                                    isLoading = false
+                                                }
+                                            }
+                                        },
+                                        label = {
+                                            Text(
+                                                "${source.emoji} ${source.displayName}",
+                                                fontSize = 12.sp
+                                            )
+                                        },
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                }
+                            }
+                            Text(
+                                text = selectedSource.description,
+                                fontSize = 11.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f),
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
+                    }
+
                     // Search bar
                     OutlinedTextField(
                         value = searchQuery,
@@ -278,7 +368,7 @@ fun BrandBrowserScreen(
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 CircularProgressIndicator()
                                 Spacer(modifier = Modifier.height(16.dp))
-                                Text("Loading brands from IRDB...")
+                                Text("Loading brands from ${selectedSource.displayName}...")
                             }
                         }
                     } else if (error != null && brands.isEmpty()) {
@@ -291,15 +381,16 @@ fun BrandBrowserScreen(
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Button(onClick = {
                                     scope.launch {
-                                        loadBrands(
-                                            page = 0,
-                                            onLoading = { isLoading = it },
-                                            onResult = { result, total ->
-                                                brands = result
-                                                totalBrands = total
+                                        error = null
+                                        isLoading = true
+                                        IRCodeApiManager.fetchBrands(selectedSource, 0, pageSize).fold(
+                                            onSuccess = { result ->
+                                                brands = result.map { IRDBApiClient.Brand(it.name, it.path) }
+                                                totalBrands = IRCodeApiManager.getTotalBrandCount(selectedSource)
                                             },
-                                            onError = { error = it }
+                                            onFailure = { error = it.message }
                                         )
+                                        isLoading = false
                                     }
                                 }) {
                                     Text("Retry")
@@ -345,20 +436,20 @@ fun BrandBrowserScreen(
                                                 onClick = {
                                                     scope.launch {
                                                         val nextPage = currentPage + 1
-                                                        loadBrands(
-                                                            page = nextPage,
-                                                            onLoading = { isLoading = it },
-                                                            onResult = { result, _ ->
+                                                        isLoading = true
+                                                        IRCodeApiManager.fetchBrands(selectedSource, nextPage, pageSize).fold(
+                                                            onSuccess = { result ->
                                                                 if (result.isNotEmpty()) {
-                                                                    brands = brands + result
+                                                                    brands = brands + result.map { IRDBApiClient.Brand(it.name, it.path) }
                                                                     currentPage = nextPage
                                                                     hasMorePages = result.size >= pageSize
                                                                 } else {
                                                                     hasMorePages = false
                                                                 }
                                                             },
-                                                            onError = { error = it }
+                                                            onFailure = { error = it.message }
                                                         )
+                                                        isLoading = false
                                                     }
                                                 }
                                             ) {
@@ -376,20 +467,6 @@ fun BrandBrowserScreen(
     }
 }
 
-private suspend fun loadBrands(
-    page: Int,
-    onLoading: (Boolean) -> Unit,
-    onResult: (List<IRDBApiClient.Brand>, Int) -> Unit,
-    onError: (String) -> Unit
-) {
-    onLoading(true)
-    val total = IRDBApiClient.getTotalBrandCount()
-    IRDBApiClient.fetchBrands(page, 30).fold(
-        onSuccess = { onResult(it, total) },
-        onFailure = { onError(it.message ?: "Unknown error") }
-    )
-    onLoading(false)
-}
 
 @Composable
 private fun BrandItem(
