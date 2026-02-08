@@ -38,6 +38,17 @@ jobs:
           echo "version_code=${VERSION_CODE}" >> $GITHUB_OUTPUT
           echo "release_tag=v${VERSION_NAME}-${VERSION_CODE}" >> $GITHUB_OUTPUT
 
+      - name: List APK output directory
+        run: |
+          echo "Listing APK directory contents:"
+          ls -la app/build/outputs/apk/release/
+
+      - name: Rename APK
+        run: |
+          cd app/build/outputs/apk/release/
+          mv app-release.apk IRBlaster-v${{ steps.version.outputs.version_name }}.apk
+          ls -la
+
       - name: Create Release and Upload APK
         uses: softprops/action-gh-release@v1
         with:
@@ -54,7 +65,7 @@ jobs:
             ### Installation
             Download the APK file below and install it on your Android device.
           files: |
-            ./app/build/outputs/apk/release/app-release.apk
+            app/build/outputs/apk/release/IRBlaster-v${{ steps.version.outputs.version_name }}.apk
           draft: false
           prerelease: false
 
