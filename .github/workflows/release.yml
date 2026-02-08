@@ -40,14 +40,34 @@ jobs:
 
       - name: List APK output directory
         run: |
-          echo "Listing APK directory contents:"
-          ls -la app/build/outputs/apk/release/
+          echo "Listing all APK files in build directory:"
+          find app/build -name "*.apk" -type f
+          echo ""
+          echo "Listing release APK directory contents:"
+          ls -la app/build/outputs/apk/release/ || echo "Release directory not found"
 
-      - name: Rename APK
+      - name: Find and Rename APK
+        id: apk
         run: |
-          cd app/build/outputs/apk/release/
-          mv app-release.apk IRBlaster-v${{ steps.version.outputs.version_name }}.apk
-          ls -la
+          # Find the release APK file
+          APK_FILE=$(find app/build/outputs/apk/release -name "*.apk" -type f | head -1)
+          
+          if [ -z "$APK_FILE" ]; then
+            echo "No APK found in release directory, searching in all build outputs..."
+            APK_FILE=$(find app/build -name "*release*.apk" -type f | head -1)
+          fi
+          
+          if [ -z "$APK_FILE" ]; then
+            echo "ERROR: No APK file found!"
+            exit 1
+          fi
+          
+          echo "Found APK: $APK_FILE"
+          
+          # Copy to a known location with proper name
+          cp "$APK_FILE" ./IRBlaster-v${{ steps.version.outputs.version_name }}.apk
+          echo "apk_path=./IRBlaster-v${{ steps.version.outputs.version_name }}.apk" >> $GITHUB_OUTPUT
+          ls -la ./IRBlaster-v${{ steps.version.outputs.version_name }}.apk
 
       - name: Create Release and Upload APK
         uses: softprops/action-gh-release@v1
@@ -64,8 +84,7 @@ jobs:
             
             ### Installation
             Download the APK file below and install it on your Android device.
-          files: |
-            app/build/outputs/apk/release/IRBlaster-v${{ steps.version.outputs.version_name }}.apk
+          files: ${{ steps.apk.outputs.apk_path }}
           draft: false
           prerelease: false
 
