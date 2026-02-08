@@ -5,6 +5,9 @@ on:
     branches:
       - release
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,14 +38,11 @@ jobs:
           echo "version_code=${VERSION_CODE}" >> $GITHUB_OUTPUT
           echo "release_tag=v${VERSION_NAME}-${VERSION_CODE}" >> $GITHUB_OUTPUT
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release and Upload APK
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.release_tag }}
-          release_name: Release ${{ steps.version.outputs.version_name }}
+          name: Release ${{ steps.version.outputs.version_name }}
           body: |
             ## IRBlaster v${{ steps.version.outputs.version_name }}
             
@@ -53,15 +53,8 @@ jobs:
             
             ### Installation
             Download the APK file below and install it on your Android device.
+          files: |
+            ./app/build/outputs/apk/release/app-release.apk
           draft: false
           prerelease: false
 
-      - name: Upload Release APK
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./app/build/outputs/apk/release/app-release.apk
-          asset_name: IRBlaster-v${{ steps.version.outputs.version_name }}.apk
-          asset_content_type: application/vnd.android.package-archive
