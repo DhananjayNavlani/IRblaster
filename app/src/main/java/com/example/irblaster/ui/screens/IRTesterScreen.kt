@@ -25,7 +25,7 @@ object SamsungTVCodes {
     const val FREQUENCY = 38000
 
     val POWER_VARIATIONS = listOf(
-        intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
+        intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
         intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000),
         intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 590, 590, 42000),
         intArrayOf(4600, 4500, 550, 1700, 550, 1700, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 1700, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 600, 550, 1700, 550, 600, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 1700, 550, 45000),
@@ -46,6 +46,18 @@ object SamsungTVCodes {
     val CHANNEL_DOWN = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
     val MUTE = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
     val SOURCE = intArrayOf(4500, 4500, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 1690, 590, 42000)
+}
+
+// Konftel 50 IR codes (RC5 Protocol)
+object KonftelCodes {
+    const val FREQUENCY = 36000 // RC5 uses 36kHz
+
+    // RC5 pattern structure (based on generic RC5 / Philips 36kHz)
+    // Pulse Width Modulated
+    val POWER = intArrayOf(2666, 889, 444, 444, 444, 444, 889, 889, 444, 444, 444, 444, 444, 444, 444, 444, 444, 444, 889, 444, 444, 889, 444, 444, 444, 90000)
+    val VOLUME_UP = intArrayOf(2666, 889, 444, 444, 444, 444, 889, 889, 444, 444, 444, 444, 444, 444, 889, 444, 444, 444, 444, 889, 444, 444, 444, 444, 444, 90000)
+    val VOLUME_DOWN = intArrayOf(2666, 889, 444, 444, 444, 444, 889, 889, 444, 444, 444, 444, 444, 444, 889, 444, 444, 889, 444, 444, 444, 444, 444, 444, 444, 90000)
+    val MUTE = intArrayOf(2666, 889, 444, 444, 444, 444, 889, 889, 444, 444, 444, 444, 444, 444, 444, 889, 444, 444, 889, 444, 444, 889, 444, 444, 444, 90000)
 }
 
 data class IRButton(
@@ -74,7 +86,11 @@ fun IRTesterScreen(
     var hasIrBlaster by remember { mutableStateOf(false) }
     var powerVariationIndex by remember { mutableIntStateOf(0) }
     var isAutoPlaying by remember { mutableStateOf(false) }
-    var autoPlayDelay by remember { mutableIntStateOf(2500) }
+    var autoPlayDelay by remember { mutableIntStateOf(500) }
+
+    // Brand Selection
+    var selectedBrand by remember { mutableStateOf("Samsung") }
+    val brands = listOf("Samsung", "Konftel (RC5)")
 
     // Dialog states
     var showAddDialog by remember { mutableStateOf(false) }
@@ -92,29 +108,39 @@ fun IRTesterScreen(
     }
 
     // Reset variation index when button type changes
-    LaunchedEffect(selectedButtonType) {
+    LaunchedEffect(selectedButtonType, selectedBrand) {
         powerVariationIndex = 0
         isAutoPlaying = false
     }
 
     // Get current code based on selection
-    val currentCode: IntArray = remember(selectedButtonType, powerVariationIndex) {
-        when (selectedButtonType) {
-            "Power" -> SamsungTVCodes.POWER_VARIATIONS.getOrElse(powerVariationIndex) { SamsungTVCodes.POWER }
-            "Vol+" -> SamsungTVCodes.VOLUME_UP
-            "Vol-" -> SamsungTVCodes.VOLUME_DOWN
-            "Ch+" -> SamsungTVCodes.CHANNEL_UP
-            "Ch-" -> SamsungTVCodes.CHANNEL_DOWN
-            "Mute" -> SamsungTVCodes.MUTE
-            "Source" -> SamsungTVCodes.SOURCE
-            else -> SamsungTVCodes.POWER
+    val currentCode: IntArray = remember(selectedButtonType, powerVariationIndex, selectedBrand) {
+        if (selectedBrand == "Samsung") {
+            when (selectedButtonType) {
+                "Power" -> SamsungTVCodes.POWER_VARIATIONS.getOrElse(powerVariationIndex) { SamsungTVCodes.POWER }
+                "Vol+" -> SamsungTVCodes.VOLUME_UP
+                "Vol-" -> SamsungTVCodes.VOLUME_DOWN
+                "Ch+" -> SamsungTVCodes.CHANNEL_UP
+                "Ch-" -> SamsungTVCodes.CHANNEL_DOWN
+                "Mute" -> SamsungTVCodes.MUTE
+                "Source" -> SamsungTVCodes.SOURCE
+                else -> SamsungTVCodes.POWER
+            }
+        } else {
+            when (selectedButtonType) {
+                "Power" -> KonftelCodes.POWER
+                "Vol+" -> KonftelCodes.VOLUME_UP
+                "Vol-" -> KonftelCodes.VOLUME_DOWN
+                "Mute" -> KonftelCodes.MUTE
+                else -> KonftelCodes.POWER
+            }
         }
     }
 
-    val variationCount = if (selectedButtonType == "Power") SamsungTVCodes.POWER_VARIATIONS.size else 1
+    val variationCount = if (selectedBrand == "Samsung" && selectedButtonType == "Power") SamsungTVCodes.POWER_VARIATIONS.size else 1
 
     LaunchedEffect(isAutoPlaying, powerVariationIndex) {
-        if (isAutoPlaying && hasIrBlaster && selectedButtonType == "Power") {
+        if (isAutoPlaying && hasIrBlaster && selectedButtonType == "Power" && selectedBrand == "Samsung") {
             try {
                 val code = SamsungTVCodes.POWER_VARIATIONS[powerVariationIndex]
                 irManager?.transmit(SamsungTVCodes.FREQUENCY, code)
@@ -132,7 +158,7 @@ fun IRTesterScreen(
     fun sendIRSignal(code: IntArray, buttonName: String) {
         if (irManager?.hasIrEmitter() == true) {
             try {
-                val frequency = SamsungTVCodes.FREQUENCY
+                val frequency = if (selectedBrand == "Samsung") SamsungTVCodes.FREQUENCY else KonftelCodes.FREQUENCY
                 Log.d("IRBlaster", "========== IR TRANSMISSION ==========")
                 Log.d("IRBlaster", "Button: $buttonName")
                 Log.d("IRBlaster", "Carrier Frequency: $frequency Hz (${frequency / 1000} kHz)")
@@ -192,10 +218,24 @@ fun IRTesterScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "Samsung TV - Select Button",
+                        text = "$selectedBrand - Select Button",
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
+
+                    // Brand Selector
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        brands.forEach { brand ->
+                            FilterChip(
+                                selected = selectedBrand == brand,
+                                onClick = { selectedBrand = brand },
+                                label = { Text(brand) }
+                            )
+                        }
+                    }
 
                     // Button type chips - row 1
                     Row(
@@ -303,7 +343,7 @@ fun IRTesterScreen(
                                     Slider(
                                         value = autoPlayDelay.toFloat(),
                                         onValueChange = { autoPlayDelay = it.toInt() },
-                                        valueRange = 1000f..5000f, steps = 7,
+                                        valueRange = 500f..5000f, steps = 7,
                                         modifier = Modifier.padding(horizontal = 8.dp)
                                     )
                                 }
@@ -454,7 +494,8 @@ fun IRTesterScreen(
             confirmButton = {
                 Button(
                     onClick = {
-                        onAddToRemote(customName, customEmoji, pendingButtonCode!!, SamsungTVCodes.FREQUENCY)
+                        val frequency = if (selectedBrand == "Samsung") SamsungTVCodes.FREQUENCY else KonftelCodes.FREQUENCY
+                        onAddToRemote(customName, customEmoji, pendingButtonCode!!, frequency)
                         showAddDialog = false
                         pendingButtonCode = null
                     },
