@@ -241,7 +241,6 @@ fun MainApp(
                     }
                 )
 
-                // Edit Button Dialog
                 if (showEditButtonDialog && buttonToEdit != null) {
                     EditButtonDialog(
                         button = buttonToEdit!!,
